@@ -2,6 +2,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { Textarea } from '@/components/ui/textarea';
+import { Switch } from "@/components/ui/switch"
 import { CalendarIcon } from '@radix-ui/react-icons';
 import {
   Popover,
@@ -314,35 +315,22 @@ function App() {
             )}
           />
           <FormField
-            control={form.control}
-            name='business'
-            render={({ field }) => (
-              <FormItem className='mb-2'>
-                <FormLabel>Do you own a business ?</FormLabel>
-                <FormControl>
-                  <RadioGroup
-                    onValueChange={field.onChange}
-                    defaultValue='yes'
-                    className='flex flex-col space-y-1'
-                  >
-                    <FormItem className='flex items-center space-x-3 space-y-0'>
-                      <FormControl>
-                        <RadioGroupItem value='yes' />
-                      </FormControl>
-                      <FormLabel className='font-normal'>yes</FormLabel>
-                    </FormItem>
-                    <FormItem className='flex items-center space-x-3 space-y-0'>
-                      <FormControl>
-                        <RadioGroupItem value='no' />
-                      </FormControl>
-                      <FormLabel className='font-normal'>No</FormLabel>
-                    </FormItem>
-                  </RadioGroup>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+              control={form.control}
+              name="business"
+              render={({ field }) => (
+                <FormItem className='mb-2'>
+                  <div className="space-y-0.5">
+                    <FormLabel>Do you own a business ?</FormLabel>
+                  </div>
+                  <FormControl>
+                    <Switch
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
           <FormField
             control={form.control}
             name='shopname'
@@ -353,7 +341,7 @@ function App() {
                   <Input
                     placeholder='Enter your shop name'
                     {...field}
-                    disabled={form.watch('business') === 'no'}
+                    disabled={!form.watch('business')}
                   />
                 </FormControl>
               </FormItem>
@@ -367,7 +355,7 @@ function App() {
                 <FormLabel>Shop Address</FormLabel>
                 <FormControl>
                   <Textarea
-                    disabled={form.watch('business') === 'no'}
+                    disabled={!form.watch('business')}
                     placeholder='Enter the complete address of the shop'
                     className='resize-none'
                     {...field}
