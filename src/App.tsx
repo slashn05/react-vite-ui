@@ -35,9 +35,9 @@ function App() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='flex flex-col sm:flex-row sm:gap-16'
+        className='flex flex-col sm:flex-row sm:gap-16 '
       >
-        <div className='w-screen sm:w-1/4'>
+        <div className='sm:w-1/4 mx-4'>
           <FormField
             control={form.control}
             name='name'
@@ -216,7 +216,7 @@ function App() {
           />
         </div>
 
-        <div className='w-screen sm:w-1/4'>
+        <div className='sm:w-1/4 mx-4'>
           <FormField
             control={form.control}
             name='fathersname'
@@ -371,6 +371,9 @@ function App() {
               </FormItem>
             )}
           />
+          <div className='flex flex-row justify-center'> 
+            <Button className='mt-4 w-5/6 sm:w-screen' type="submit">Add profile</Button>
+          </div>
         </div>
       </form>
     </Form>
