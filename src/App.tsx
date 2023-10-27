@@ -2,10 +2,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { Textarea } from '@/components/ui/textarea';
-import { format } from 'date-fns';
 import { CalendarIcon } from '@radix-ui/react-icons';
-import { cn } from '@/lib/utils';
-import { useForm } from 'react-hook-form';
 import {
   Popover,
   PopoverContent,
@@ -27,10 +24,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { format } from 'date-fns';
+import { cn } from '@/lib/utils';
+import { useForm } from 'react-hook-form';
 
 const onSubmit = () => {};
 function App() {
   const form = useForm();
+
   return (
     <Form {...form}>
       <form
@@ -291,7 +292,7 @@ function App() {
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
-                    defaultValue={field.value}
+                    defaultValue='no'
                     className='flex flex-col space-y-1'
                   >
                     <FormItem className='flex items-center space-x-3 space-y-0'>
@@ -314,14 +315,14 @@ function App() {
           />
           <FormField
             control={form.control}
-            name='type'
+            name='business'
             render={({ field }) => (
               <FormItem className='mb-2'>
                 <FormLabel>Do you own a business ?</FormLabel>
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
-                    defaultValue={field.value}
+                    defaultValue='yes'
                     className='flex flex-col space-y-1'
                   >
                     <FormItem className='flex items-center space-x-3 space-y-0'>
@@ -349,7 +350,11 @@ function App() {
               <FormItem className='mb-2'>
                 <FormLabel>Shop name</FormLabel>
                 <FormControl>
-                  <Input placeholder='Shop name' {...field} />
+                  <Input
+                    placeholder='Enter your shop name'
+                    {...field}
+                    disabled={form.watch('business') === 'no'}
+                  />
                 </FormControl>
               </FormItem>
             )}
@@ -362,6 +367,7 @@ function App() {
                 <FormLabel>Shop Address</FormLabel>
                 <FormControl>
                   <Textarea
+                    disabled={form.watch('business') === 'no'}
                     placeholder='Enter the complete address of the shop'
                     className='resize-none'
                     {...field}
@@ -371,8 +377,10 @@ function App() {
               </FormItem>
             )}
           />
-          <div className='flex flex-row justify-center'> 
-            <Button className='mt-4 w-5/6 sm:w-screen' type="submit">Add profile</Button>
+          <div className='flex flex-row justify-center'>
+            <Button className='mt-4 w-5/6 sm:w-screen' type='submit'>
+              Add profile
+            </Button>
           </div>
         </div>
       </form>
