@@ -35,9 +35,9 @@ function App() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='flex flex-row gap-16'
+        className='flex flex-col sm:flex-row sm:gap-16'
       >
-        <div className='w-1/4'>
+        <div className='w-screen sm:w-1/4'>
           <FormField
             control={form.control}
             name='name'
@@ -216,7 +216,7 @@ function App() {
           />
         </div>
 
-        <div className='w-1/4'>
+        <div className='w-screen sm:w-1/4'>
           <FormField
             control={form.control}
             name='fathersname'
