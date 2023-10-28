@@ -123,6 +123,21 @@ function App() {
             />
             <FormField
               control={form.control}
+              name='age'
+              render={({ field }) => (
+                <FormItem className='mb-2'>
+                  <FormLabel>Age (in years)</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder='Your age is calculated based on date of birth if given'
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name='sex'
               render={({ field }) => (
                 <FormItem className='mb-2'>
@@ -264,21 +279,6 @@ function App() {
                   <FormLabel>Mothers Name</FormLabel>
                   <FormControl>
                     <Input placeholder='Your mothers name' {...field} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name='age'
-              render={({ field }) => (
-                <FormItem className='mb-2'>
-                  <FormLabel>Age (in years)</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder='Your age is calculated based on date of birth if given'
-                      {...field}
-                    />
                   </FormControl>
                 </FormItem>
               )}
